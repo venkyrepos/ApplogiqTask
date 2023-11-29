@@ -10,6 +10,6 @@ namespace ApplogiqTask.DataContext
                 
         }
 
-        public DbSet<EtherTransactionData> EtherTransactionData { get; set; }
+        public DbSet<EtherTransactionResponseData> EtherTransactionResponseData { get; set; }
     }
 }

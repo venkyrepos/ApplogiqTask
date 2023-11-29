@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Newtonsoft.Json;
 
 namespace ApplogiqTask.Models
@@ -7,20 +8,22 @@ namespace ApplogiqTask.Models
     public class EtherTransactionResponseData
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
         public string status { get; set; }
         public string message { get; set; }
-        public Result[] result { get; set; }
-    }
-    public class EtherTransactionRetrieveData
-    {
-        public Result[] result { get; set; }
-    }
+        [NotMapped]
+        public object result { get; set; }
+        [JsonIgnore]
+        public string serializedTransaction { get; set; }
 
+    }
     public class Result
     {
-        [Key]
-        public int Id { get; set; }
+        public ResultData[] result {  get; set; }
+    }
+    
+    public class ResultData
+    {
         public string blockNumber { get; set; }
         public string timeStamp { get; set; }
         public string hash { get; set; }

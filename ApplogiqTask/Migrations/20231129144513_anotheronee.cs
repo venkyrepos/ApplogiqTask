@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace ApplogiqTask.Migrations
 {
-    public partial class Initial : Migration
+    public partial class anotheronee : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,21 +13,20 @@ namespace ApplogiqTask.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "EtherTransactionData",
+                name: "EtherTransactionResponseData",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Status = table.Column<string>(type: "longtext", nullable: true)
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    status = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    Message = table.Column<string>(type: "longtext", nullable: true)
+                    message = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    SerializedResults = table.Column<string>(type: "longtext", nullable: true)
+                    serializedTransaction = table.Column<string>(type: "longtext", nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4")
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EtherTransactionData", x => x.Id);
+                    table.PrimaryKey("PK_EtherTransactionResponseData", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
         }
@@ -35,7 +34,7 @@ namespace ApplogiqTask.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "EtherTransactionData");
+                name: "EtherTransactionResponseData");
         }
     }
 }
